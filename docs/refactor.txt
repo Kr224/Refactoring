@@ -1,0 +1,41 @@
+List of Refactorings
+====================
+
+Name/Banner# of Developer 1:
+Name/Banner# of Developer 2:
+
+Refactorings:
+=============
+
+0. EXAMPLE:  
+   File: AngryBot.java
+   Location (method/approx. line #): getNextMove(), line 54
+   Issue Idetified: Magic number
+   Description of fix:  Replaced with constant EMPTY_DISTRICT_PENALTY
+
+1. File:
+   Location (method/approx. line #):
+   Issue Idetified:
+   Description of fix:
+
+2. File:
+   Location (method/approx. line #):
+   Issue Idetified:
+   Description of fix:
+
+3. File:
+   Location (method/approx. line #):
+   Issue Idetified:
+   Description of fix:
+
+4. File:
+   Location (method/approx. line #):
+   Issue Idetified:
+   Description of fix:
+
+5. File:
+   Location (method/approx. line #):
+   Issue Idetified:
+   Description of fix:
+
+
