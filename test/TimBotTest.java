@@ -110,7 +110,7 @@ class TimBotTest {
         t.senseDistricts(spressoSensed, botsSensed);
         t.getNextMove();
         t.fireCannon();
-        assertFalse(t.useShield(),
+        assertFalse(t.activateShield(),
                 "Not enough jolts to use shield");
     }
 
@@ -124,9 +124,9 @@ class TimBotTest {
         t.senseDistricts(spressoSensed, botsSensed);
         t.getNextMove();
         t.fireCannon();
-        assertTrue(t.useShield(),
+        assertTrue(t.activateShield(),
                 "Sufficient jolts to use shield");
-        assertFalse(t.useShield(),
+        assertFalse(t.activateShield(),
                 "Not enough jolts to use shield");
     }
 
@@ -140,8 +140,8 @@ class TimBotTest {
         t.senseDistricts(spressoSensed, botsSensed);
         t.getNextMove();
         t.fireCannon();
-        assertTrue(t.useShield(), "Sufficient jolts to use shield");
-        assertTrue(t.useShield(), "Sufficient jolts to use shield again");
+        assertTrue(t.activateShield(), "Sufficient jolts to use shield");
+        assertTrue(t.activateShield(), "Sufficient jolts to use shield again");
     }
 
     /* Common case: Check to ensure that energyLevel gets updated when the result

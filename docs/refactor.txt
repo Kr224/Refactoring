@@ -1,7 +1,7 @@
 List of Refactorings
 ====================
 
-Name/Banner# of Developer 1:
+Name/Banner# of Developer 1: Karishni Gupta
 Name/Banner# of Developer 2:
 
 Refactorings:
@@ -13,29 +13,65 @@ Refactorings:
    Issue Idetified: Magic number
    Description of fix:  Replaced with constant EMPTY_DISTRICT_PENALTY
 
-1. File:
-   Location (method/approx. line #):
-   Issue Idetified:
-   Description of fix:
+1. File: BullyBot.java
+   Location (method/approx. line #):  fireCannon() method, line 29
+   Issue Idetified: The number 2 is used as a magic number without explanation
+   Description of fix:  Define a constant variable to represent the value 2
 
-2. File:
-   Location (method/approx. line #):
-   Issue Idetified:
-   Description of fix:
+2. File: BullyBot.java
+   Location (method/approx. line #): fireCannon() method, lines 20-23 and lines 27-36
+   Issue Idetified: There is a duplication of code for calculating the number of districts to shoot at and creating the array of shots.
+   Description of fix: Extract the duplicated code into separate methods
 
-3. File:
-   Location (method/approx. line #):
-   Issue Idetified:
-   Description of fix:
+3. File: BullyBot.java
+   Location (method/approx. line #): fireCannon() method, line 13
+   Issue Idetified: The variable name fire is misleading
+   Description of fix: Rename the variable to something more descriptive
 
-4. File:
-   Location (method/approx. line #):
-   Issue Idetified:
-   Description of fix:
+4. File: ChickenBot.java
+   Location (method/approx. line #): getNextMove() method, line 25
+   Issue Idetified: The numbers 2000 and 1000 are used as magic numbers without explanation,
+   Description of fix: Define constant variables to represent these values
 
-5. File:
-   Location (method/approx. line #):
-   Issue Idetified:
-   Description of fix:
+5. File: ChickenBot.java
+   Location (method/approx. line #): getNextMove() method, line 26
+   Issue Idetified: The variable name adj is misleading
+   Description of fix: Rename the variable to something more descriptive
+
+6. File: ChickenBot.java
+      Location (method/approx. line #): getNextMove() method, line 36
+      Issue Idetified: The value District.CURRENT is hard-coded in multiple
+      Description of fix: Define a constant variable to represent District.CURRENT
+
+7. File: SpressoBot.java
+      Location (method/approx. line #): getNextMove() method, lines 23, 25
+      Issue Idetified: The numbers 4, 2, and 1 are used as magic numbers
+      Description of fix: Define constant variables to represent these values
+
+8. File: SpressoBot.java
+      Location (method/approx. line #): getNextMove() method, line 26
+      Issue Idetified: The variable name adj is misleading
+      Description of fix: Rename the variable to something more descriptive
+
+9. File: SpressoBot.java
+      Location (method/approx. line #): getNextMove() method, line 38
+      Issue Idetified: The value District.CURRENT is hard-coded
+      Description of fix:  Define a constant variable to represent District.CURRENT,
+
+10. File: TimBot.java
+      Location (method/approx. line #): getNextMove() method, line 93
+      Issue Idetified: The value District.CURRENT is hard-coded
+      Description of fix: Define a constant variable to represent District.CURRENT
+
+11. File: TimBot.java
+      Location (method/approx. line #): useJolt() method, line 112
+      Issue Idetified: The useJolt() method is marked as private but is not used
+      Description of fix:  Remove the unused private method to avoid confusion
+
+12. File: TimBot.java
+      Location (method/approx. line #): useShield() method, line 120
+      Issue Idetified: The method name useShield() suggests that the TimBot is activating its shield, but the actual behavior described in the comments differs.
+      Description of fix: Rename the method to accurately reflect its behavior
+
 
 

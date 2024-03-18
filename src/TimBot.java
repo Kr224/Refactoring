@@ -12,7 +12,9 @@
    This is the TimBot base class for representing TimBots and their 
    behaviours on the planet DohNat.  
 */
-public class TimBot { 
+public class TimBot {
+  private static final int CURRENT_DISTRICT = District.CURRENT;
+
   private int myId;                                  // TimBot's ID
   protected int energyLevel;                         // TimBot's energy level
   protected char personality = 'N';                  // TimBot's personality
@@ -100,7 +102,7 @@ public class TimBot {
    */
   public int getNextMove() {
     // Never move
-    return District.CURRENT;
+    return CURRENT_DISTRICT;
   }
 
 
@@ -139,7 +141,7 @@ public class TimBot {
 
      returns: true if the shield was raised.
    */
-  public boolean useShield() {
+  public boolean activateShield() {
     return useJolt();
   }
 

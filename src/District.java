@@ -244,7 +244,7 @@ public class District {
         count = 0;
         for( int i = 0; i < numInvaders; i++ ) {  
           // If the bot successfully used its shield, it remains in the battle.
-          if( invaderBots[i].useShield() ) {
+          if( invaderBots[i].activateShield()) {
             // Set resiedent to latest bot and increment count of bots in battle
             resident = invaderBots[i];
             count++;
@@ -307,7 +307,7 @@ public class District {
       // loop until all shots ar processed or timbot runs out of energy
       for( ; incomingFire > 0; incomingFire-- ) {
         // if timbot runs out of energy, district becomes empty.
-        if( !resident.useShield() ) {
+        if( !resident.activateShield()) {
           resident = null;
           break;
         }

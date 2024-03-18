@@ -38,29 +38,30 @@ public class ChickenBot extends TimBot {
               District.WEST, or District.CURRENT
    */
   public int getNextMove() {
-    // Allocate a scores array to score moves.  Lower score is better
-    // score = 2000 * (bot sensed in district) + 1000 * (adjacent bots) + 
-    //         spresso cont
-    // We initially assume no robots are adjacent and initial move is to stay.
+    final int SCORE_BOT_SENSED = 2000;
+    final int SCORE_ADJACENT_BOTS = 1000;
+    final int CURRENT_DISTRICT = District.CURRENT;
+
+    // Allocate a scores array to score moves. Lower score is better
     int [] scores = new int[botsSensed.length];
-    int adj = 0;
-    int move = District.CURRENT;
+    int adjacentBotsScore = 0;
+    int move = CURRENT_DISTRICT;
 
     // If we have energy, consider moving
     if( energyLevel > 0 ) {
       // Loop through all possibilities and compute the scores.
       for( int i = 0; i < scores.length; i++ ) {
         scores[i] = spressoSensed[i];
-        if( ( i != District.CURRENT ) && botsSensed[i] ) {
-          scores[i] += 2000;
-          adj = 1000;
+        if( ( i != CURRENT_DISTRICT ) && botsSensed[i] ) {
+          scores[i] += SCORE_BOT_SENSED;
+          adjacentBotsScore = SCORE_ADJACENT_BOTS;
         }
       }
       // Only the current district can have an adjacency score.
-      scores[District.CURRENT] += adj;
+      scores[CURRENT_DISTRICT] += adjacentBotsScore;
 
       // Choose the move with the minimum score
-      int min = scores[District.CURRENT] + 1;
+      int min = scores[CURRENT_DISTRICT] + 1;
       for( int i = 0; i < scores.length; i++ ) {
         if( min > scores[i] ) {
           min = scores[i];
@@ -69,7 +70,7 @@ public class ChickenBot extends TimBot {
       }
 
       // Decrement energy level if we are moving.
-      if( move != District.CURRENT ) {
+      if( move != CURRENT_DISTRICT ) {
         energyLevel--;
       }
     }

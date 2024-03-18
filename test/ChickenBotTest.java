@@ -44,8 +44,8 @@ class ChickenBotTest {
         boolean [] botsSensed = {false, true, true, true, true};
         t.senseDistricts(spressoSensed, botsSensed);
         assertEquals(District.CURRENT, t.getNextMove(), "Should not move");
-        assertTrue(t.useShield(), "Energy level should be at 1");
-        assertFalse(t.useShield(), "Energy level should be at 0");
+        assertTrue(t.activateShield(), "Energy level should be at 1");
+        assertFalse(t.activateShield(), "Energy level should be at 0");
     }
 
     /* Case 2: Bot moves out of CURRENT => energy level does changes
@@ -59,7 +59,7 @@ class ChickenBotTest {
         boolean [] botsSensed = {false, false, true, true, true};
         t.senseDistricts(spressoSensed, botsSensed);
         assertEquals(District.NORTH, t.getNextMove(), "Should not move");
-        assertFalse(t.useShield(), "Energy level should be at 0");
+        assertFalse(t.activateShield(), "Energy level should be at 0");
     }
 
     /* Case 3: Bot avoids other bots at all costs

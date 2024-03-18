@@ -36,9 +36,9 @@ class AngryBotTest {
         boolean [] botsSensed = {false, true, true, true, true};
         t.senseDistricts(spressoSensed, botsSensed);
         assertEquals(District.CURRENT, t.getNextMove(), "Should not move");
-        assertTrue(t.useShield(), "Energy level should be at 2");
-        assertTrue(t.useShield(), "Energy level should be at 1");
-        assertFalse(t.useShield(), "Energy level should be at 0");
+        assertTrue(t.activateShield(), "Energy level should be at 2");
+        assertTrue(t.activateShield(), "Energy level should be at 1");
+        assertFalse(t.activateShield(), "Energy level should be at 0");
     }
 
     /* Case 1b: Bot moves out of CURRENT => energy level drops

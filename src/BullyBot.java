@@ -13,6 +13,7 @@
    behaviours on the planet DohNat.  
 */
 public class BullyBot extends ChickenBot {
+  private static final int ENERGY_DECREASE_FOR_SHOTS = 2;
   /**
      This is the only constructor for this class.  This constructor
      initializes the Tibot and sets its ID and the initial amount of
@@ -36,38 +37,79 @@ public class BullyBot extends ChickenBot {
 
      returns: array of integers representing shots from the cannon
    */
+//  public int [] fireCannon() {
+//    int count = 0;
+//    int [] fire = null;
+//
+//    // Determine number of districts to shoot at
+//    for( int i = 0; i < botsSensed.length; i++ ) {
+//      if( ( i != District.CURRENT ) && botsSensed[i] ) {
+//        count++;
+//      }
+//    }
+//
+//    // Reduce count if we do not have enough energy
+//    if( count > ( energyLevel - 2 ) ) {
+//      count = energyLevel - 2;
+//    }
+//
+//    // If we are going to shoot, create the array of shots
+//    if( count > 0 ) {
+//      // allocate array and set index into it to 0.
+//      fire = new int[count];
+//      int j = 0;
+//
+//      // loop through all the districts, adding them to array if they
+//      // contain a timbot
+//      for( int i = District.NORTH; i < botsSensed.length; i++ ) {
+//        if( ( i != District.CURRENT ) && botsSensed[i] && ( j < count ) ) {
+//          fire[j] = i;
+//          j++;
+//          energyLevel--;
+//        }
+//      }
+//    }
+//    return fire;
+//  }
   public int [] fireCannon() {
-    int count = 0;
-    int [] fire = null;
+    int [] shots = null;
+    int numberOfDistrictsToShoot = calculateNumberOfDistrictsToShoot();
 
-    // Determine number of districts to shoot at
+    // If we are going to shoot, create the array of shots
+    if( numberOfDistrictsToShoot > 0 ) {
+      shots = createArrayForShots(numberOfDistrictsToShoot);
+    }
+    return shots;
+  }
+
+  private int calculateNumberOfDistrictsToShoot() {
+    int count = 0;
     for( int i = 0; i < botsSensed.length; i++ ) {
       if( ( i != District.CURRENT ) && botsSensed[i] ) {
         count++;
       }
     }
-
     // Reduce count if we do not have enough energy
-    if( count > ( energyLevel - 2 ) ) {
-      count = energyLevel - 2;
+    if( count > ( energyLevel - ENERGY_DECREASE_FOR_SHOTS ) ) {
+      count = energyLevel - ENERGY_DECREASE_FOR_SHOTS;
     }
+    return count;
+  }
 
-    // If we are going to shoot, create the array of shots
-    if( count > 0 ) {
-      // allocate array and set index into it to 0.
-      fire = new int[count];  
-      int j = 0;
+  private int [] createArrayForShots(int numberOfDistrictsToShoot) {
+    int [] shots = new int[numberOfDistrictsToShoot];
+    int j = 0;
 
-      // loop through all the districts, adding them to array if they
-      // contain a timbot
-      for( int i = District.NORTH; i < botsSensed.length; i++ ) {
-        if( ( i != District.CURRENT ) && botsSensed[i] && ( j < count ) ) {
-          fire[j] = i;
-          j++;
-          energyLevel--;
-        }
+    // loop through all the districts, adding them to array if they
+    // contain a timbot
+    for( int i = District.NORTH; i < botsSensed.length; i++ ) {
+      if( ( i != District.CURRENT ) && botsSensed[i] && ( j < numberOfDistrictsToShoot ) ) {
+        shots[j] = i;
+        j++;
+        energyLevel--;
       }
     }
-    return fire;
+    return shots;
   }
+
 }

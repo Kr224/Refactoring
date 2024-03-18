@@ -38,41 +38,45 @@ public class SpressoBot extends TimBot {
      returns: the one of District.NORTH, District.EAST, District.SOUTH,
               District.WEST, or District.CURRENT
    */
-  public int getNextMove() {
-    // Create a score for each possible move, lower scores are better
-    // score = 4 * spressoCount + 2 * (bot in district) + 1 * (adjacent bot)
-    // initially no bots are adjacent and the initial choice is not to move
-    int [] scores = new int[botsSensed.length];
-    int adj = 0;
-    int move = District.CURRENT;
+ public int getNextMove() {
+   final int SCORE_SPRESSO = 4;
+   final int SCORE_BOT_SENSED = 2;
+   final int SCORE_ADJACENT_BOTS = 1;
+   final int CURRENT_DISTRICT = District.CURRENT;
 
-    // If we have energy, consider moving
-    if( energyLevel > 0 ) {
-      // Compute scores for each possible move
-      for( int i = 0; i < scores.length; i++ ) {
-        scores[i] = spressoSensed[i] * 4;
-        if( ( i != District.CURRENT ) && botsSensed[i] ) {
-          scores[i] += 2;
-          adj = 1;
-        }
-      }
-      // Only the current district will have an adjacent score
-      scores[District.CURRENT] += adj;
+   // Create a score for each possible move, lower scores are better
+   int [] scores = new int[botsSensed.length];
+   int adjacentBotsScore = 0;
+   int move = CURRENT_DISTRICT;
 
-      // Find the move with the lowest score
-      int min = scores[District.CURRENT] + 1;
-      for( int i = 0; i < scores.length; i++ ) {
-        if( min > scores[i] ) {
-          min = scores[i];
-          move = i;
-        }
-      }
+   // If we have energy, consider moving
+   if( energyLevel > 0 ) {
+     // Compute scores for each possible move
+     for( int i = 0; i < scores.length; i++ ) {
+       scores[i] = spressoSensed[i] * SCORE_SPRESSO;
+       if( ( i != CURRENT_DISTRICT ) && botsSensed[i] ) {
+         scores[i] += SCORE_BOT_SENSED;
+         adjacentBotsScore = SCORE_ADJACENT_BOTS;
+       }
+     }
+     // Only the current district will have an adjacent score
+     scores[CURRENT_DISTRICT] += adjacentBotsScore;
 
-      // If the move is to anothr district, decrement energy level.
-      if( move != District.CURRENT ) {
-        energyLevel--;
-      }
-    }
-    return move;
-  }
+     // Find the move with the lowest score
+     int min = scores[CURRENT_DISTRICT] + 1;
+     for( int i = 0; i < scores.length; i++ ) {
+       if( min > scores[i] ) {
+         min = scores[i];
+         move = i;
+       }
+     }
+
+     // If the move is to another district, decrement energy level.
+     if( move != CURRENT_DISTRICT ) {
+       energyLevel--;
+     }
+   }
+   return move;
+ }
+
 }
